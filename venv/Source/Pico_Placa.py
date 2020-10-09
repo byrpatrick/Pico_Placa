@@ -1,13 +1,8 @@
 from datetime import time
-import re
-
-def getTime(timeGiven):
-    hours, minutes = [int(i) for i in re.split(":| |H|h", timeGiven)]
-    return time(hours, minutes)
 
 rulesPicoPlaca = {"Monday":[1,2], "Tuesday":[3,4], "Wednesday":[5,6], "Thursday":[7,8], "Friday":[9,0]}
 
-def isntPicoHour(timeGiven):
+def isPicoHour(timeGiven):
     return (timeGiven >= time(7, 0) and timeGiven <= time(9, 30) or
             timeGiven >= time(16, 0) and timeGiven <= time(19, 30))
 
@@ -17,7 +12,7 @@ def canBeOnRoad(lastDigit, day, timeGiven):
         return "The car can be on road."
     #When the time is right, you can drive!!
     #If isn't a pico hour you can drive.
-    if isntPicoHour(getTime(timeGiven)):
+    if not isPicoHour(timeGiven):
         return "The car can be on road."
     #Isn't weekend and is a pico hour. Can I drive?
     for k, v in rulesPicoPlaca.items():
