@@ -1,5 +1,4 @@
-from datetime import time
-import calendar
+from datetime import datetime, time
 import re
 
 #Get time or get a Value Error 
@@ -7,12 +6,10 @@ def getTime(timeGiven):
     hours, minutes = [int(i) for i in re.split(":| |H|h", timeGiven)]
     return time(hours, minutes)
 
-#Get Day or get a Value Error
-def getDay(date):
+#Get Date or get a Value Error
+def getDate(date):
     day, month, year = [int(i) for i in re.split(" |-|/", date)]
-    dayNumber = calendar.weekday(year, month, day)
-    days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    return (days[dayNumber])
+    return datetime(year, month, day)
 
 #Get last digit of license plate or Rise a Value Error Exception if license plate isnt similar to abc1234 or DEF5678
 def getLastDigitLicPlate(licPlate):
